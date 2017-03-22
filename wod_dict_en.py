@@ -37,5 +37,6 @@ WOD = {
     'soc': ('Socialize', 'social interaction in various situations'),
     'str': ('Streetwise', 'navigating urban streets and gathering intel there'),
     'sub': ('Subterfuge', 'deceiving others and noticing it')
-
 }
+
+#(c) http://whitewolf.wikia.com/wiki/Skill
