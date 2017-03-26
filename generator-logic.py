@@ -4,7 +4,6 @@ PHY = 'physical'
 MEN = 'mental'
 SOC = 'social'
 
-
 class Character:
     pass
     # self.name
@@ -16,6 +15,11 @@ class Character:
     # self.chronicle
 
 class Trait(Character):
+    
+    def __init__(self, type, key):
+        #super().__init__(?)
+        self.type=type
+        self.key=key
 
     @property
     def value(self):
@@ -106,9 +110,9 @@ class Attribute(Trait):
     soc=0
     
     def __init__(self, type, key):
+        super().__init__(type, key)
+        
         self.dots=1
-        self.type=type
-        self.key=key
 
 class Skill(Trait):
     breaks=0,5,7,11
@@ -116,13 +120,13 @@ class Skill(Trait):
     soc=0
     men=0
     
-    specialties=3
+    spe=3
     
     def __init__(self, type, key):
+        super().__init__(type, key)
+        
         self.specialty=set()
         self.dots=0
-        self.type=type
-        self.key=key
         
     @property
     def value(self):
@@ -138,30 +142,32 @@ class Skill(Trait):
         
         
     def mkspec(self, title):
-        if Skill.specialties>0:
+        if Skill.spe>0:
             self.specialty.add(title)
-            Skill.specialties-=1
+            Skill.spe-=1
         else: print('no on mkspec')
     
     def rmspec(self, title):
         if title in self.specialty:
             self.specialty.remove(title)
-            Skill.specialties+=1
+            Skill.spe+=1
         else: print('no on remspec')
         
-class Clan(Character):
-    pass
-class Dependable(Character):
-    pass
-class Discipline(Trait):
-    pass
-class Merit(Trait):
-    pass
-class Flaw(Trait):
-    pass
-class Inventory(Character):
-    pass
+# class Clan(Character):
+#     pass
+# class Dependable(Character):
+#     pass
+# class Discipline(Trait):
+#     pass
+# class Merit(Trait):
+#     pass
+# class Flaw(Trait):
+#     pass
+# class Inventory(Character):
+#     pass
 
+
+#Attributes
 Str = Attribute(PHY, "Str")
 Dex = Attribute(PHY, "Dex")
 Sta = Attribute(PHY, "Sta")
@@ -174,6 +180,7 @@ Int = Attribute(MEN, "Int")
 Wit = Attribute(MEN, "Wit")
 Res = Attribute(MEN, "Res")
 
+#Skills
 ath = Skill(PHY, "ath")
 bra = Skill(PHY, "bra")
 dri = Skill(PHY, "dri")
